@@ -2,13 +2,18 @@ import { useState } from "react";
 
 export const Auth = () => {
     return <div className="auth">
-        <login />
+        <Login />
         <Register />
     </div>
 };
 
 const Login = () => {
-    return <div></div>
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    return <Form label="Login" username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
+    
 };
 
 const Register = () => {
@@ -16,9 +21,13 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    return <div className="auth-container">
+    return <Form label="Register" username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
+};
+
+const Form = ({username, setUsername, password, setPassword, label}) => {
+   return <div className="auth-container">
         <form>
-            <h2> Register</h2>
+            <h2> {label}</h2>
             <div className="form-group">
                 <label htmlFor="username"> Username:</label>
                 <input type="text" id="username" value={username} onChange={(event) => setUsername(event.target.value)}></input>
@@ -27,6 +36,8 @@ const Register = () => {
                 <label htmlFor="password"> Password:</label>
                 <input type="text" id="password" value={password} onChange={(event) => setPassword(event.target.value) }></input>
             </div>
+
+            <button type="submit">{label}</button>
         </form>
     </div>
 };
