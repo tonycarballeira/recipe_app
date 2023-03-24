@@ -27,13 +27,11 @@ router.post("/", async (req, res) => {
 
 router.put("/", async (req, res) => {
     try {
-    const recipe = await RecipeModel.findById(req.body.recipeID);
-    const user = await UserModel.findById(req.body.userID);
-
-    user.savedRecipes.push(recipe);
-    await user.save;
-    res.json({savedRecipes: user.savedRecipes});
-    
+        const recipe = await RecipeModel.findById(req.body.recipeID);
+        const user = await UserModel.findById(req.body.userID);
+        user.savedRecipes.push(recipe);
+        await user.save();
+        res.json({ savedRecipes: user.savedRecipes });  
     } catch (err) {
         res.json(err);
     }
