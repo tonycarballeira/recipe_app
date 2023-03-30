@@ -31,7 +31,9 @@ export const Home = () => {
         };
 
         fetchRecipe();
-        fetchSavedRecipe();
+
+        if (cookies.access_token) fetchSavedRecipe();
+        
     }, [])
 
     const saveRecipe = async (recipeID) => {
@@ -49,6 +51,9 @@ export const Home = () => {
     return (
         <div>
             <h1>Recipes</h1>
+            <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
             <ul>
                 {recipes.map((recipe) =>(
                     <li key={recipe._id}>
